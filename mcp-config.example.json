@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "sr-p3": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/mcpsrtest/dist/server.js"
+      ],
+      "description": "Sveriges Radio P3 playlist server"
+    }
+  }
+}

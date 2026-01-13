@@ -1,0 +1,44 @@
+{
+  "name": "sr-p3-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for accessing Sveriges Radio P3 channel music playlists",
+  "type": "module",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsc && node dist/server.js",
+    "watch": "tsc --watch",
+    "test": "node dist/server.js"
+  },
+  "keywords": [
+    "mcp",
+    "sveriges-radio",
+    "p3",
+    "music",
+    "playlist"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomellen/mcpsrtest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tomellen/mcpsrtest/issues"
+  },
+  "homepage": "https://github.com/tomellen/mcpsrtest#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9",
+    "fast-xml-parser": "^4.5.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

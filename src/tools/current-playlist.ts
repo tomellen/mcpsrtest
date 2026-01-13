@@ -72,10 +72,13 @@ export async function getCurrentPlaylist(
     const response = await apiClient.getCurrentPlaylist();
 
     const currentTime = new Date().toISOString();
-    const playlist = response.sr?.playlist;
+
+    // Find P3 channel in the response
+    const p3Channel = response.channels?.find(ch => ch.id === P3_CHANNEL_ID);
+    const playlist = p3Channel?.playlists?.playlist;
 
     if (!playlist) {
-      throw new Error('No playlist data returned from Sveriges Radio API');
+      throw new Error('No playlist data returned for P3 from Sveriges Radio API');
     }
 
     // Parse current song

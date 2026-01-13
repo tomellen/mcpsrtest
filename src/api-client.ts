@@ -12,10 +12,10 @@ import type {
 } from './types.js';
 
 // P3 Channel ID - hardcoded as per requirements
-export const P3_CHANNEL_ID = 565;
+export const P3_CHANNEL_ID = 164;
 
 // API Configuration
-const SR_API_BASE_URL = 'http://api.sr.se/api/v2/playlists';
+const SR_API_BASE_URL = 'https://api.sr.se/api/v2/playlists';
 const API_TIMEOUT_MS = 10000; // 10 seconds
 const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
 const RATE_LIMIT_MAX_REQUESTS = 10; // 10 requests per minute
@@ -125,9 +125,14 @@ export class SRApiClient {
     try {
       const response = await this.axiosInstance.get(endpoint, { params });
 
-      // Parse XML to JSON
-      const parsed = this.xmlParser.parse(response.data);
-      return parsed as T;
+      // Parse response based on format
+      if (params.format === 'json') {
+        return response.data as T;
+      } else {
+        // Parse XML to JSON
+        const parsed = this.xmlParser.parse(response.data);
+        return parsed as T;
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
@@ -159,8 +164,7 @@ export class SRApiClient {
    */
   public async getCurrentPlaylist(): Promise<SRApiRightNowResponse> {
     return this.makeRequest<SRApiRightNowResponse>('/rightnow', {
-      channelid: P3_CHANNEL_ID,
-      format: 'xml',
+      format: 'json',
     });
   }
 
@@ -178,7 +182,7 @@ export class SRApiClient {
       id: P3_CHANNEL_ID,
       startdatetime: startDateTime,
       enddatetime: endDateTime,
-      format: 'xml',
+      format: 'json',
     });
   }
 }

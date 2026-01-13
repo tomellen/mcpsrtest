@@ -75,27 +75,31 @@ export interface SRApiSong {
 }
 
 /**
- * SR API raw response structure for "right now" endpoint
+ * SR API raw response structure for "right now" endpoint (JSON format)
  */
 export interface SRApiRightNowResponse {
-  sr?: {
-    playlist?: {
-      song?: SRApiSong | SRApiSong[];
-      previoussong?: SRApiSong | SRApiSong[];
-      nextsong?: SRApiSong | SRApiSong[];
+  channels?: Array<{
+    id: number;
+    name: string;
+    playlists?: {
+      playlist?: {
+        song?: SRApiSong | SRApiSong[];
+        previoussong?: SRApiSong | SRApiSong[];
+        nextsong?: SRApiSong | SRApiSong[];
+        channel?: {
+          id: number;
+          name: string;
+        };
+      };
     };
-  };
+  }>;
 }
 
 /**
- * SR API raw response structure for playlist by channel endpoint
+ * SR API raw response structure for playlist by channel endpoint (JSON format)
  */
 export interface SRApiPlaylistResponse {
-  sr?: {
-    playlist?: {
-      song?: SRApiSong | SRApiSong[];
-    };
-  };
+  song?: SRApiSong | SRApiSong[];
 }
 
 /**

@@ -175,14 +175,12 @@ export async function searchPlaylistByDate(
     // Fetch playlist from API
     const response = await apiClient.getPlaylistByDateRange(startDateTime, endDateTime);
 
-    const playlist = response.sr?.playlist;
-
-    if (!playlist) {
+    if (!response.song) {
       throw new Error('No playlist data returned from Sveriges Radio API');
     }
 
     // Parse songs
-    const apiSongs = normalizeToArray(playlist.song);
+    const apiSongs = normalizeToArray(response.song);
     songs = apiSongs
       .map((apiSong, index) => parseSong(apiSong, index))
       .filter((song): song is Song => song !== null);

@@ -115,7 +115,7 @@ Fetch the currently playing song on SR P3.
   ],
   "metadata": {
     "channel": "P3",
-    "channelId": 565,
+    "channelId": 164,
     "timestamp": "2024-12-15T10:32:00Z",
     "query": {
       "type": "current"
@@ -165,7 +165,7 @@ Search P3 playlist history for a specific date or date range.
   ],
   "metadata": {
     "channel": "P3",
-    "channelId": 565,
+    "channelId": 164,
     "timestamp": "2024-12-15T10:00:00Z",
     "query": {
       "type": "date-range",
@@ -182,15 +182,15 @@ Search P3 playlist history for a specific date or date range.
 
 ### P3 Channel ID
 
-The P3 channel ID is hardcoded as `565` in the server. This is Sveriges Radio's official channel identifier for P3.
+The P3 channel ID is hardcoded as `164` in the server. This is Sveriges Radio's official channel identifier for P3.
 
 ### API Integration
 
 This server uses Sveriges Radio's Open API:
-- Base URL: `http://api.sr.se/api/v2/playlists/`
+- Base URL: `https://api.sr.se/api/v2/playlists/`
 - No authentication required
 - All requests are read-only
-- Responses are XML, converted to JSON internally
+- Responses are in JSON format
 
 ### Rate Limiting
 
